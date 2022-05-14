@@ -1,70 +1,51 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# FRAMEWORK FRONT-END II (REACT)
+## PROJETO FINAL - AGENDA DE CONTATOS
+### DESCRIÇÃO
+Para finalização do módulo, é necessário a criação de um sistema de “Agenda de
+contatos”.
+### ATORES
+O sistema terá como atores o “Usuário”, que é a pessoa final que manipulará os
+contatos e o “Contato”, que será o objeto final da manipulação do sistema.
+### REGRAS DE NEGÓCIO
+Tema e Layout (10%)
+1. A aplicação deverá possuir um design moderno e personalizado
+2. A aplicação deverá ter uma tela de login
+3. A aplicação deverá ter uma tela de cadastro de usuário
+4. A aplicação deverá ter uma tela específica para detalhamento de usuário
+Usuários (30%)
+1. O sistema deverá permitir o acesso de um usuário
+2. O sistema deverá permitir cadastrar um novo usuário
+Contatos (60%)
+1. O sistema deverá listar todos os contatos do usuário
+2. O sistema deverá permitir detalhar um contato
+3. O sistema deverá permitir cadastrar um novo contato
+4. O sistema deverá permitir atualizar dados de um contato
+5. O sistema deverá permitir a exclusão de um contato
+6. O sistema deverá permitir filtrar um contato por nome e telefone
+Regras Sugeridas (Entra na divisão de notas dos contatos)
+1. Inserção de número de contato único
+2. Utilização de máscara em campos de input
+3. Quaisquer melhorias que quiser implementar
+### API
+A API é fornecida no seguinte repositório (https://github.com/dkayke-aulas/agendacontatos-backend) com documentação, bem como explicação em aula sobre como
+utilizá-la, ler e compreender a documentação técnica de um projeto backend.
+### NÃO PERMITIDO
+• Utilizar bibliotecas cliente HTTP (Axios, Express e outros)
+• Fazer modificação no backend
+### PERMITIDO
+• Utilizar biblioteca externa de componentes
+• Utilizar frameworks CSS, desde que integrado no CSS Module
+• Utilizar quaisquer recursos da linguagem JavaScript e/ou Framework React
+### OBRIGATÓRIO
+• Utilizar CSS Module
+• Utilizar os hooks useState, useEffect, useContext
+• Criar ao menos um hook personalizado
+• Utilizar a API fornecida para consumo dos endpoints e consistência dos dados
+• Utilizar a API Fetch do JavaScript
+### OBSERVAÇÕES FINAIS
+• O design ficará por decisão do aluno
+• A arquitetura do projeto ficará por decisão do aluno
+• A data máxima de entrega será até o dia 11 de abril de 2022 às 19h
+• A entrega deverá ser feita via Class, onde o aluno deverá colar o link do seu
+repositório no GitHub.
+• A correção e feedbacks será efetuada via Class até o dia 17 de abril.
