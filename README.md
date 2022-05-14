@@ -1,5 +1,6 @@
 # FRAMEWORK FRONT-END II (REACT)
 ## PROJETO FINAL - AGENDA DE CONTATOS
+Projeto proposto pela Let's Code, desenvolvido por Marcelo Daros.
 ### DESCRIÇÃO
 Para finalização do módulo, é necessário a criação de um sistema de “Agenda de
 contatos”.
@@ -27,25 +28,24 @@ Regras Sugeridas (Entra na divisão de notas dos contatos)
 2. Utilização de máscara em campos de input
 3. Quaisquer melhorias que quiser implementar
 ### API
-A API é fornecida no seguinte repositório (https://github.com/dkayke-aulas/agendacontatos-backend) com documentação, bem como explicação em aula sobre como
-utilizá-la, ler e compreender a documentação técnica de um projeto backend.
+A API é fornecida no seguinte repositório (https://github.com/dkayke-aulas/agendacontatos-backend) com documentação, bem como explicação em aula sobre como utilizá-la, ler e compreender a documentação técnica de um projeto backend.
 ### NÃO PERMITIDO
-• Utilizar bibliotecas cliente HTTP (Axios, Express e outros)
-• Fazer modificação no backend
+1. Utilizar bibliotecas cliente HTTP (Axios, Express e outros)
+2. Fazer modificação no backend
 ### PERMITIDO
-• Utilizar biblioteca externa de componentes
-• Utilizar frameworks CSS, desde que integrado no CSS Module
-• Utilizar quaisquer recursos da linguagem JavaScript e/ou Framework React
+1. Utilizar biblioteca externa de componentes
+2. Utilizar frameworks CSS, desde que integrado no CSS Module
+3. Utilizar quaisquer recursos da linguagem JavaScript e/ou Framework React
 ### OBRIGATÓRIO
-• Utilizar CSS Module
-• Utilizar os hooks useState, useEffect, useContext
-• Criar ao menos um hook personalizado
-• Utilizar a API fornecida para consumo dos endpoints e consistência dos dados
-• Utilizar a API Fetch do JavaScript
+1. Utilizar CSS Module
+2. Utilizar os hooks useState, useEffect, useContext
+3. Criar ao menos um hook personalizado
+4. Utilizar a API fornecida para consumo dos endpoints e consistência dos dados
+5. Utilizar a API Fetch do JavaScript
 ### OBSERVAÇÕES FINAIS
-• O design ficará por decisão do aluno
-• A arquitetura do projeto ficará por decisão do aluno
-• A data máxima de entrega será até o dia 11 de abril de 2022 às 19h
-• A entrega deverá ser feita via Class, onde o aluno deverá colar o link do seu
+1. O design ficará por decisão do aluno
+2. A arquitetura do projeto ficará por decisão do aluno
+3. A data máxima de entrega será até o dia 11 de abril de 2022 às 19h
+4. A entrega deverá ser feita via Class, onde o aluno deverá colar o link do seu
 repositório no GitHub.
-• A correção e feedbacks será efetuada via Class até o dia 17 de abril.
+5. A correção e feedbacks será efetuada via Class até o dia 17 de abril.
