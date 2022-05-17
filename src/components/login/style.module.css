@@ -11,7 +11,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    background-color:rgba(0, 0, 0, 0.85)
+    background-color:#252939
   }
 
     .form {
@@ -19,12 +19,12 @@
       max-width: 400px;
       margin: 0 auto;
       position: fixed;
-      top: 40px;
+      top: 150px;
       left: 0px;
       right: 0px;
       bottom: 0px;
       font-family: 'Lobster', cursive;
-      background-color: rgb(156, 156, 156);
+      background-color: #6f7cab;
       border: 2px solid black;
       border-radius: 10px;
       box-sizing: border-box;
@@ -43,12 +43,14 @@
         padding: 0px;
       }
 
-        .label, .input {
+        .label {
           display: block;
-          font-size: 20px;
+          font-size: 22px;
         }
 
         .input {
+          display: block;
+          font-size: 18px;
           margin-top: 5px;
           width: 100%;
           border: 2px solid black;
@@ -65,4 +67,11 @@
         position: absolute;
         left: 140px;
         bottom: 40px;
+      }
+
+      .button:hover {
+        cursor: pointer;
+        color: white;
+        background-color: #252939;
+        border-color: #252939;
       }
