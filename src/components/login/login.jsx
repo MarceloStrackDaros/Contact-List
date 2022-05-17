@@ -6,8 +6,8 @@ import { useState } from 'react'
 export default function Login() {
 
   const navigate = useNavigate()
-  const [user, setUser] = useState(null)
-  const [password, setPassword] = useState(null)
+  const [user, setUser] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <div className={style.app}>
@@ -22,9 +22,12 @@ export default function Login() {
             <label htmlFor="password" className={style.label}>Senha:</label>
             <input id="password" className={style.input} type="password" onBlur={(event) => {setPassword(event.target.value)}}/>
           </fieldset>
-          <button className={style.button} onClick={() => {
-            (user !== null && password !== null) ? navigate("/main") : alert("Favor preencha todos os campos!")
-          }}>Logar</button>
+          <section className={style.buttonWrapper}>
+            <button className={style.button} onClick={() => {
+              (user !== "" && password !== "") ? navigate("/main") : alert("Favor preencha todos os campos!")
+            }}>Logar</button>
+            <button className={style.button}>Cadastrar</button>
+          </section>
         </form>
       </div>
     </div>

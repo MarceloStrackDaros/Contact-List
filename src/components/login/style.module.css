@@ -57,21 +57,26 @@
           border-radius: 5px;
         }
       
-      .button {
-        display: block;
-        font-size: 18px;
-        font-family: inherit;
-        width: 120px;
-        border: 2px solid black;
-        border-radius: 10px;
+      .buttonWrapper {
+        width: 396px;
+        display: flex;
+        justify-content: space-evenly;
         position: absolute;
-        left: 140px;
         bottom: 40px;
       }
 
-      .button:hover {
-        cursor: pointer;
-        color: white;
-        background-color: #252939;
-        border-color: #252939;
-      }
+        .button {
+          display: block;
+          font-size: 18px;
+          font-family: inherit;
+          width: 120px;
+          border: 2px solid black;
+          border-radius: 10px;
+        }
+
+        .button:hover {
+          cursor: pointer;
+          color: white;
+          background-color: #252939;
+          border-color: #252939;
+        }
