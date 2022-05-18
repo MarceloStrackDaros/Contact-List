@@ -2,12 +2,34 @@ import '../../reset.css'
 import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import useFetch from '../hooks/useFetch'
 
 export default function Login() {
 
-  const navigate = useNavigate()
+  const { loading, request } = useFetch()
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+
+  const handleClickCadastro = () => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({ email: user, senha: password })
+    }
+
+    request("user", options)
+    // navigate("/main")
+  }
+
+  const handleClickLogin = () => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({ email: user, senha: password })
+    }
+
+    request("auth", options)
+    // navigate("/main")
+  }
 
   return (
     <div className={style.app}>
@@ -21,10 +43,10 @@ export default function Login() {
           <fieldset className={style.fieldset}>
             <label htmlFor="password" className={style.label}>Senha:</label>
             <input id="password" className={style.input} type="password" onBlur={(event) => {setPassword(event.target.value)}}/>
-          </fieldset>
+          </fieldset>09874
           <section className={style.buttonWrapper}>
             <button className={style.button} onClick={() => {
-              (user !== "" && password !== "") ? navigate("/main") : alert("Favor preencha todos os campos!")
+              (user !== "" && password !== "") ? handleClickLogin() : alert("Favor preencha todos os campos!")
             }}>Logar</button>
             <button className={style.button}>Cadastrar</button>
           </section>
