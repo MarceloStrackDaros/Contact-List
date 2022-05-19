@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,400;8..144,600&display=swap');
 
 .app {
   max-width: 1200px;
@@ -15,7 +16,7 @@
   }
 
     .form {
-      max-height: 400px;
+      max-height: 450px;
       max-width: 400px;
       margin: 0 auto;
       position: fixed;
@@ -48,6 +49,11 @@
           font-size: 22px;
         }
 
+        .labelPicture {
+          display: inline;
+          font-size: 22px;
+        }
+
         .input {
           display: block;
           font-size: 18px;
@@ -56,27 +62,41 @@
           border: 2px solid black;
           border-radius: 5px;
         }
-      
-      .buttonWrapper {
-        width: 396px;
-        display: flex;
-        justify-content: space-evenly;
+
+        .inputFile {
+          margin-left: 10px;
+          max-width: 200px;
+        }
+
+      .buttonClickRegistration {
+        font-family: 'Roboto Flex', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        border: none;
+        background-color: transparent;
+        margin-top: 10px;
+        margin-left: 22px;
+        padding: 0px;
+      }
+
+      .buttonLogin, .buttonRegister {
+        display: block;
+        font-size: 18px;
+        font-family: inherit;
+        width: 120px;
+        border: 2px solid black;
+        border-radius: 10px;
         position: absolute;
+        left: 140px;
         bottom: 40px;
       }
 
-        .button {
-          display: block;
-          font-size: 18px;
-          font-family: inherit;
-          width: 120px;
-          border: 2px solid black;
-          border-radius: 10px;
-        }
+      .buttonClickRegistration:hover, .buttonLogin:hover, .buttonRegister:hover {
+        cursor: pointer;
+      }
 
-        .button:hover {
-          cursor: pointer;
-          color: white;
-          background-color: #252939;
-          border-color: #252939;
-        }
+      .buttonLogin:hover, .buttonRegister:hover {
+        color: white;
+        background-color: #252939;
+        border-color: #252939;
+      }
