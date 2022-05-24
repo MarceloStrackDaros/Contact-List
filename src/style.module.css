@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,400;8..144,600&display=swap');
+
+.siteContainer {
+  font: 100%/1.5em arial, verdana, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  margin: auto;
+  max-width: 1200px;
+}
+
+  .siteHeader {
+    background-color: #8994be;
+    border-radius: 25px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    font-family: 'Roboto Flex', sans-serif;
+  }
