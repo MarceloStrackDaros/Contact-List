@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 
-export default function useFetch() {
-  const ulrBase = "http://localhost:5000/v1/"
+export default function useFetch(url) {
+  const ulrBase = url || "http://localhost:5000/v1/"
   const [loading, setLoading] = useState(null)
 
   const request = useCallback(async (rota, options) => {

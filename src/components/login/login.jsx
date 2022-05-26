@@ -25,9 +25,16 @@ export default function Login() {
     if (response.json.status === 409) {
       alert("E-mail já cadastrado!")
     }
-    else (
-      navigate("/main")
-    )
+    else if (response.json.status === 400) {
+      alert("Favor preencha todos os campos!")
+    }
+    else {
+      navigate("/main", {
+        state: {
+          response: response.json.data
+        }
+      })
+    }
   }
 
   const handleClickLogin = async () => {
@@ -41,7 +48,11 @@ export default function Login() {
       alert("Usuário e/ou senha incorreta.")
     }
     else (
-      navigate("/main")
+      navigate("/main", {
+        state: {
+          data: response.json.data
+        }
+      })
     )
   }
 
