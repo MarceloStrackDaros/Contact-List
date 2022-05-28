@@ -3,6 +3,7 @@ import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import useFetch from '../hooks/useFetch'
+import Compress from 'compress.js'
 
 export default function Login() {
 
@@ -56,7 +57,23 @@ export default function Login() {
     )
   }
 
-   const changeToRegistration = () => {
+  const handleFileInput = (event) => {
+    const compress = new Compress()
+
+    const files = [...event.target.files]
+    compress.compress(files, {
+      size: 4, // the max size in MB, defaults to 2MB
+      quality: .75, // the quality of the image, max is 1,
+      maxWidth: 300, // the max width of the output image, defaults to 1920px
+      maxHeight: 300, // the max height of the output image, defaults to 1920px
+      resize: true, // defaults to true, set false if you do not want to resize the image width and height
+      rotate: false, // See the rotation section below
+    }).then((result) => {
+      setPicture(result[0].data)
+    })
+  }
+
+  const changeToRegistration = () => {
     setPageTitle("Faça seu Cadastro!")
     setRegistration(true)
    }
@@ -82,7 +99,7 @@ export default function Login() {
           { registration &&
           <fieldset className={style.fieldset}>
             <label htmlFor="picture" className={style.labelPicture}>Foto:</label>
-            <input id="picture" className={style.inputFile} type="file" accept="image/png, image/jpeg" onBlur={(event) => {setPicture(event.target.value)}}/>
+            <input id="picture" className={style.inputFile} type="file" accept="image/png, image/jpeg" onBlur={(event) => {handleFileInput(event)}}/>
           </fieldset>}
           { !registration && 
           <>
