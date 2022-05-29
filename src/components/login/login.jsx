@@ -4,14 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import Compress from 'compress.js'
+import { useUser } from '../contexts/user'
 
 export default function Login() {
 
+  const userContext = useUser()
+  const { name, setName, user, setUser, password, setPassword, picture, setPicture } = userContext
+  console.log(name)
+  console.log(user)
+  console.log(password)
+  console.log(picture)
+
   const { loading, request } = useFetch()
-  const [name, setName] = useState("")
-  const [user, setUser] = useState("")
-  const [password, setPassword] = useState("")
-  const [picture, setPicture] = useState("")
   const [registration, setRegistration] = useState(false)
   const [pageTitle, setPageTitle] = useState("Faça seu Login!")
   const navigate = useNavigate()
