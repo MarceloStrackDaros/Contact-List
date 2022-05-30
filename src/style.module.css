@@ -9,7 +9,7 @@
   max-width: 1200px;
 }
 
-  .siteHeader {
+  .siteHeader, .personalData {
     background-color: #8994be;
     border-radius: 25px;
     margin-top: 30px;
@@ -17,4 +17,8 @@
     font-size: 20px;
     line-height: 50px;
     font-family: 'Roboto Flex', sans-serif;
+  }
+
+  .personalData {
+
   }

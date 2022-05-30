@@ -1,24 +1,21 @@
 import '../../reset.css'
 import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import Compress from 'compress.js'
 import { useUser } from '../contexts/user'
+import { useState } from 'react'
 
 export default function Login() {
 
   const userContext = useUser()
-  const { name, setName, user, setUser, password, setPassword, picture, setPicture } = userContext
-  console.log(name)
-  console.log(user)
-  console.log(password)
-  console.log(picture)
+  const {name, setName, user, setUser, password, setPassword, picture, setPicture, setUserID, setToken } = userContext
 
   const { loading, request } = useFetch()
+  const navigate = useNavigate()
+
   const [registration, setRegistration] = useState(false)
   const [pageTitle, setPageTitle] = useState("Faça seu Login!")
-  const navigate = useNavigate()
 
   const handleClickCadastro = async () => {
     const options = {
@@ -34,11 +31,8 @@ export default function Login() {
       alert("Favor preencha todos os campos!")
     }
     else {
-      navigate("/main", {
-        state: {
-          response: response.json.data
-        }
-      })
+      setUserID(response.json.data.id)
+      navigate("/main")
     }
   }
 
@@ -49,16 +43,15 @@ export default function Login() {
     }
     const response = await request("auth", options)
 
+    const { nome, token } = response.json.data
     if (response.json.status === 401) {
       alert("Usuário e/ou senha incorreta.")
     }
-    else (
-      navigate("/main", {
-        state: {
-          data: response.json.data
-        }
-      })
-    )
+    else {
+      setName(nome)
+      setToken(token)
+      navigate("/main")
+    }
   }
 
   const handleFileInput = (event) => {

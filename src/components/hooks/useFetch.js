@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 
 export default function useFetch(url) {
   const ulrBase = url || "http://localhost:5000/v1/"
-  const [loading, setLoading] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const request = useCallback(async (rota, options) => {
 
