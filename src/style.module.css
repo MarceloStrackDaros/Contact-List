@@ -9,7 +9,7 @@
   max-width: 1200px;
 }
 
-  .siteHeader, .personalData {
+  .siteHeader, .personalData, .addContactForm {
     background-color: #8994be;
     border-radius: 25px;
     margin-top: 30px;
@@ -19,6 +19,13 @@
     font-family: 'Roboto Flex', sans-serif;
   }
 
-  .personalData {
-
+  .dataWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
+
+    .nameWrapper {
+      display: flex;
+      flex-direction: column;
+    }
