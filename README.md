@@ -45,7 +45,6 @@ A API é fornecida no seguinte repositório (https://github.com/dkayke-aulas/age
 ### OBSERVAÇÕES FINAIS
 1. O design ficará por decisão do aluno
 2. A arquitetura do projeto ficará por decisão do aluno
-3. A data máxima de entrega será até o dia 11 de abril de 2022 às 19h
-4. A entrega deverá ser feita via Class, onde o aluno deverá colar o link do seu
+3. A entrega deverá ser feita via Class, onde o aluno deverá colar o link do seu
 repositório no GitHub.
-5. A correção e feedbacks será efetuada via Class até o dia 17 de abril.
+4. A correção e feedbacks será efetuada via Class até o dia 17 de abril.
