@@ -1,4 +1,5 @@
-import style from './style.module.css'
+import style from './style.module.css';
+import { useState } from 'react';
 import useFetch from './components/hooks/useFetch';
 import { useUser } from './components/contexts/user';
 
@@ -7,6 +8,8 @@ function App() {
   const { loading, request } = useFetch()
   const userContext = useUser()
   const {name, setName, user, setUser, password, setPassword, picture, setPicture, userID, setUserID, token, setToken } = userContext
+  const [ contatoAtual, setContatoAtual ] = useState()
+  const [ contatos, setContatos ] = useState()
 
   const handleClickBuscarContatos = async () => {
     const options = {
@@ -17,6 +20,17 @@ function App() {
     const response = await request("contact", options)
   }
   console.log(picture)
+
+  const handleClickAdicionarContato = () => {
+    setContatos((contatosAntigos) => {
+      if (contatosAntigos) {
+        return [...contatosAntigos, contatoAtual]
+      }
+      else {
+        return contatosAntigos
+      }
+    })
+  }
 
   return (
     <div className={style.siteContainer}>
@@ -36,7 +50,7 @@ function App() {
           <h2 className={style.sectionTitle}>Inserir novo contato:</h2>
           <fieldset>
             <label htmlFor="name">Nome: </label>
-            <input type="text" name="name" required/>
+            <input type="text" name="name" onChange={(event) => {setContatoAtual(event.target.value)}} required/>
           </fieldset>
           <fieldset>
             <label htmlFor="surname">Apelido: </label>
@@ -62,6 +76,7 @@ function App() {
             <label htmlFor="picture">Foto: </label>
             <input type="file" name="picture" />
           </fieldset>
+          <button onClick={handleClickAdicionarContato}>Adicionar</button>
         </form>
       </main>
 
