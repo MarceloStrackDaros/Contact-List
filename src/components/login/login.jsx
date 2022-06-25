@@ -2,7 +2,7 @@ import '../../reset.css'
 import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
-import Compress from 'compress.js'
+import usePictureInput from '../hooks/usePictureInput'
 import { useUser } from '../contexts/user'
 import { useState } from 'react'
 
@@ -10,10 +10,10 @@ export default function Login() {
 
   const userContext = useUser()
   const {name, setName, user, setUser, password, setPassword, picture, setPicture, setUserID, setToken } = userContext
-
-  const { loading, request } = useFetch()
+  
   const navigate = useNavigate()
-
+  const compressPicture = usePictureInput()
+  const { loading, request } = useFetch()
   const [registration, setRegistration] = useState(false)
   const [pageTitle, setPageTitle] = useState("Faça seu Login!")
 
@@ -43,31 +43,21 @@ export default function Login() {
     }
     const response = await request("auth", options)
 
-    const { nome, token } = response.json.data
     if (response.json.status === 401) {
       alert("Usuário e/ou senha incorreta.")
     }
     else {
+      const { id, nome, foto, token } = response.json.data
+      setUserID(id)
       setName(nome)
+      setPicture(foto)
       setToken(token)
       navigate("/main")
     }
   }
 
-  const handleFileInput = (event) => {
-    const compress = new Compress()
-
-    const files = [...event.target.files]
-    compress.compress(files, {
-      size: 4, // the max size in MB, defaults to 2MB
-      quality: .75, // the quality of the image, max is 1,
-      maxWidth: 300, // the max width of the output image, defaults to 1920px
-      maxHeight: 300, // the max height of the output image, defaults to 1920px
-      resize: true, // defaults to true, set false if you do not want to resize the image width and height
-      rotate: false, // See the rotation section below
-    }).then((result) => {
-      setPicture(result[0].data)
-    })
+  const handleClickPicture = async (event) => {
+    setPicture(await compressPicture(event))
   }
 
   const changeToRegistration = () => {
@@ -96,7 +86,7 @@ export default function Login() {
           { registration &&
           <fieldset className={style.fieldset}>
             <label htmlFor="picture" className={style.labelPicture}>Foto:</label>
-            <input id="picture" className={style.inputFile} type="file" accept="image/png, image/jpeg" onBlur={(event) => {handleFileInput(event)}}/>
+            <input id="picture" className={style.inputFile} type="file" accept="image/png, image/jpeg" onInput={(event) => {handleClickPicture(event)}}/>
           </fieldset>}
           { !registration && 
           <>
