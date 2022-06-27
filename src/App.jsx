@@ -10,16 +10,16 @@ function App() {
   const compressPicture = usePictureInput()
   const { loading, request } = useFetch()
   const {name, setName, user, setUser, password, setPassword, picture, setPicture, userID, setUserID, token, setToken } = userContext
-  const [ contactName, setContactName ] = useState()
-  const [ contactSurname, setContactSurname ] = useState()
-  const [ contactTelephone, setContactTelephone ] = useState()
-  const [ contactEmail, setContactEmail ] = useState()
-  const [ contactAddress, setContactAddress ] = useState()
-  const [ contactNotes, setContactNotes ] = useState()
-  const [ contactPicture, setContactPicture ] = useState()
-  const [ contatos, setContatos ] = useState()
+  const [ nome, setContactName ] = useState("")
+  const [ apelido, setContactSurname ] = useState("")
+  const [ telefones, setContactTelephone ] = useState("")
+  const [ email, setContactEmail ] = useState("")
+  const [ endereco, setContactAddress ] = useState("")
+  const [ notas, setContactNotes ] = useState("")
+  const [ foto, setContactPicture ] = useState("")
+  const [ contacts, setContacts ] = useState([])
 
-  const handleClickBuscarContatos = async () => {
+  const handleClickFetchContacts = async () => {
     const options = {
       method: "GET",
       body: JSON.stringify({ token })
@@ -28,8 +28,13 @@ function App() {
     const response = await request("contact", options)
   }
 
-  const handleClickAdicionarContato = () => {
-    
+  const handleClickAddContact = async () => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({ nome, apelido, telefones, email, endereco, notas, foto })
+    }
+
+    const response = await request("contact", options, token)
   }
 
   const handleClickPicture = async (event) => {
@@ -50,7 +55,7 @@ function App() {
             </div>
           </div>
         </section>
-        <form className={style.addContactForm}>
+        <form className={style.addContactForm} onSubmit={(event) => {event.preventDefault()}}>
           <h2 className={style.sectionTitle}>Inserir novo contato:</h2>
           <fieldset>
             <label htmlFor="name">Nome: </label>
@@ -80,7 +85,7 @@ function App() {
             <label htmlFor="picture">Foto: </label>
             <input type="file" name="picture" accept="image/png, image/jpeg" onInput={(event) => {handleClickPicture(event)}}/>
           </fieldset>
-          <button onClick={handleClickAdicionarContato}>Adicionar</button>
+          <button onClick={handleClickAddContact}>Adicionar</button>
         </form>
       </main>
 

@@ -17,7 +17,7 @@ export default function Login() {
   const [registration, setRegistration] = useState(false)
   const [pageTitle, setPageTitle] = useState("Faça seu Login!")
 
-  const handleClickCadastro = async () => {
+  const handleClickRegistration = async () => {
     const options = {
       method: "POST",
       body: JSON.stringify({ email: user, senha: password, nome: name, foto: picture })
@@ -97,7 +97,7 @@ export default function Login() {
           </>}
           { registration &&
           <button className={style.buttonRegister} onClick={() => {
-            (user !== "" && password !== "" && name !== "") ? handleClickCadastro() : alert("Favor preencha todos os campos!")}}>Cadastrar</button>}
+            (user !== "" && password !== "" && name !== "") ? handleClickRegistration() : alert("Favor preencha todos os campos!")}}>Cadastrar</button>}
         </form>
       </div>
     </div>
