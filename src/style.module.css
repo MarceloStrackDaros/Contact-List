@@ -37,3 +37,10 @@
       display: flex;
       flex-direction: column;
     }
+
+    .btnWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-top: 60px;
+    }

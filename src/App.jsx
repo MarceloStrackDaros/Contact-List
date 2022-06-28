@@ -2,6 +2,7 @@ import style from './style.module.css';
 import { useState } from 'react';
 import usePictureInput from './components/hooks/usePictureInput';
 import useFetch from './components/hooks/useFetch';
+import UserInputsScreen from './components/userInputsScreen/userInputsScreen';
 import { useUser } from './components/contexts/user';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
   const userContext = useUser()
   const compressPicture = usePictureInput()
   const { loading, request } = useFetch()
-  const {name, setName, user, setUser, password, setPassword, picture, setPicture, userID, setUserID, token, setToken } = userContext
+  const {name, setName, user, setUser, password, setPassword, picture, setPicture, userID, setUserID, token, setToken, editUserData, setEditUserData } = userContext
   const [ nome, setContactName ] = useState()
   const [ apelido, setContactSurname ] = useState()
   const [ telefones, setContactTelephone ] = useState()
@@ -41,6 +42,10 @@ function App() {
     setContactPicture(await compressPicture(event))
   }
 
+  const handleClickEditUserData = () => {
+    setEditUserData(true)
+  }
+
   return (
     <div className={style.siteContainer}>
       <header className={style.siteHeader}>Bem Vindo(a) { name }!</header>
@@ -49,12 +54,19 @@ function App() {
           <h2 className={style.sectionTitle}>Seus Dados:</h2>
           <div className={style.dataWrapper}>
             <img className={style.picture} src={`data:image/png;base64,${picture}`} alt={"teste"} />
-            <div className="nameWrapper">
+            <div className={style.nameWrapper}>
               <p>Nome: {name}</p>
               <p>Usuário: {user}</p>
+              <div className={style.btnWrapper}>
+                <button onClick={() => {handleClickEditUserData()}}>Editar Informações</button>
+                <button >Excluir Usuário</button>
+              </div>
             </div>
           </div>
         </section>
+        {editUserData &&
+          <UserInputsScreen />
+        }
         <form className={style.addContactForm} onSubmit={(event) => {event.preventDefault()}}>
           <h2 className={style.sectionTitle}>Inserir novo contato:</h2>
           <fieldset>
