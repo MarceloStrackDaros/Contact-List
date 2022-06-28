@@ -10,13 +10,13 @@ function App() {
   const compressPicture = usePictureInput()
   const { loading, request } = useFetch()
   const {name, setName, user, setUser, password, setPassword, picture, setPicture, userID, setUserID, token, setToken } = userContext
-  const [ nome, setContactName ] = useState("")
-  const [ apelido, setContactSurname ] = useState("")
-  const [ telefones, setContactTelephone ] = useState("")
-  const [ email, setContactEmail ] = useState("")
-  const [ endereco, setContactAddress ] = useState("")
-  const [ notas, setContactNotes ] = useState("")
-  const [ foto, setContactPicture ] = useState("")
+  const [ nome, setContactName ] = useState()
+  const [ apelido, setContactSurname ] = useState()
+  const [ telefones, setContactTelephone ] = useState()
+  const [ email, setContactEmail ] = useState()
+  const [ endereco, setContactAddress ] = useState()
+  const [ notas, setContactNotes ] = useState()
+  const [ foto, setContactPicture ] = useState()
   const [ contacts, setContacts ] = useState([])
 
   const handleClickFetchContacts = async () => {

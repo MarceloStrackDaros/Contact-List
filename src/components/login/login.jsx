@@ -73,15 +73,15 @@ export default function Login() {
           { registration &&
           <fieldset className={style.fieldset}>
             <label htmlFor="name" className={style.label}>Nome completo:</label>
-            <input id="name" className={style.input} type="text" onBlur={(event) => {setName(event.target.value)}}/>
+            <input id="name" className={style.input} type="text" onChange={(event) => {setName(event.target.value)}}/>
           </fieldset>}
           <fieldset className={style.fieldset}>
             <label htmlFor="user" className={style.label}>Usuário/E-mail:</label>
-            <input id="user" className={style.input} type="text" onBlur={(event) => {setUser(event.target.value)}}/>
+            <input id="user" className={style.input} type="text" onChange={(event) => {setUser(event.target.value)}}/>
           </fieldset>
           <fieldset className={style.fieldset}>
             <label htmlFor="password" className={style.label}>Senha:</label>
-            <input id="password" className={style.input} type="password" onBlur={(event) => {setPassword(event.target.value)}}/>
+            <input id="password" className={style.input} type="password" onChange={(event) => {setPassword(event.target.value)}}/>
           </fieldset>
           { registration &&
           <fieldset className={style.fieldset}>
