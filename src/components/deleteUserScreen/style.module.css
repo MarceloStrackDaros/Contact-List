@@ -1,0 +1,63 @@
+.deletionScreenWrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.7)
+}
+
+  .sectionWrapper {
+    max-height: 350px;
+    max-width: 400px;
+    margin: 0 auto;
+    position: fixed;
+    top: 150px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    font-family: 'Lobster', cursive;
+    background-color: #8994be;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+    .title {
+      font-size: 26px;
+      font-weight: normal;
+      text-align: center;
+      padding: 20px 20px 15px 20px;
+    }
+
+    .text {
+      font-size: 18px;
+      margin: 20px 20px 0px 20px;
+      text-align: center;
+    }
+
+    .btnWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      position: absolute;
+      bottom: 40px;
+      width: 396px;
+    }
+
+      .btnConfirmation, .btnCancelation {
+        display: block;
+        font-size: 18px;
+        font-family: inherit;
+        width: 120px;
+        border: 2px solid black;
+        border-radius: 10px;
+      }
+
+      .btnConfirmation:hover, .btnCancelation:hover {
+        cursor: pointer;
+        color: white;
+        background-color: #252939;
+        border-color: #252939;
+      }

@@ -2,22 +2,21 @@ import '../../reset.css'
 import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
-import usePictureInput from '../hooks/usePictureInput'
+import UserInputsScreen from '../userInputsScreen/UserInputsScreen'
 import { useUser } from '../contexts/user'
 import { useState } from 'react'
 
 export default function Login() {
 
   const userContext = useUser()
-  const {name, setName, user, setUser, password, setPassword, picture, setPicture, setUserID, setToken } = userContext
+  const {name, setName, user, setUser, picture, setPicture, setUserID, setToken } = userContext
   
   const navigate = useNavigate()
-  const compressPicture = usePictureInput()
   const { loading, request } = useFetch()
-  const [registration, setRegistration] = useState(false)
+  const [ registration, setRegistration ] = useState(false)
   const [pageTitle, setPageTitle] = useState("Faça seu Login!")
 
-  const handleClickRegistration = async () => {
+  const handleClickRegistration = async (user, password, name, picture) => {
     const options = {
       method: "POST",
       body: JSON.stringify({ email: user, senha: password, nome: name, foto: picture })
@@ -31,12 +30,16 @@ export default function Login() {
       alert("Favor preencha todos os campos!")
     }
     else {
-      setUserID(response.json.data.id)
+      const { id, email,  nome, foto } = response.json.data
+      setUserID(id)
+      setUser(email)
+      setName(nome)
+      setPicture(foto)
       navigate("/main")
     }
   }
 
-  const handleClickLogin = async () => {
+  const handleClickLogin = async (user, password) => {
     const options = {
       method: "POST",
       body: JSON.stringify({ email: user, senha: password })
@@ -47,8 +50,9 @@ export default function Login() {
       alert("Usuário e/ou senha incorreta.")
     }
     else {
-      const { id, nome, foto, token } = response.json.data
+      const { id, email,  nome, foto, token } = response.json.data
       setUserID(id)
+      setUser(email)
       setName(nome)
       setPicture(foto)
       setToken(token)
@@ -56,50 +60,27 @@ export default function Login() {
     }
   }
 
-  const handleClickPicture = async (event) => {
-    setPicture(await compressPicture(event))
-  }
-
-  const changeToRegistration = () => {
-    setPageTitle("Faça seu Cadastro!")
-    setRegistration(true)
+  const changeRegistrationMode = () => {
+    if (registration) {
+      setPageTitle("Faça seu Login!")
+      setRegistration(false)
+    }
+    else {
+      setPageTitle("Faça seu Cadastro!")
+      setRegistration(true)
+    }
    }
 
   return (
     <div className={style.app}>
-      <div className={style.formWrapper}>
-        <form className={style.form} onSubmit={(event) => {event.preventDefault()}}>
-          <h1 className={style.loginTitle}>{pageTitle}</h1>
-          { registration &&
-          <fieldset className={style.fieldset}>
-            <label htmlFor="name" className={style.label}>Nome completo:</label>
-            <input id="name" className={style.input} type="text" onChange={(event) => {setName(event.target.value)}}/>
-          </fieldset>}
-          <fieldset className={style.fieldset}>
-            <label htmlFor="user" className={style.label}>Usuário/E-mail:</label>
-            <input id="user" className={style.input} type="text" onChange={(event) => {setUser(event.target.value)}}/>
-          </fieldset>
-          <fieldset className={style.fieldset}>
-            <label htmlFor="password" className={style.label}>Senha:</label>
-            <input id="password" className={style.input} type="password" onChange={(event) => {setPassword(event.target.value)}}/>
-          </fieldset>
-          { registration &&
-          <fieldset className={style.fieldset}>
-            <label htmlFor="picture" className={style.labelPicture}>Foto:</label>
-            <input id="picture" className={style.inputFile} type="file" accept="image/png, image/jpeg" onInput={(event) => {handleClickPicture(event)}}/>
-          </fieldset>}
-          { !registration && 
-          <>
-            <button className={style.buttonClickRegistration} onClick={changeToRegistration}>Não possui usuário? <u>Cadastre-se!</u></button>
-            <button className={style.buttonLogin} onClick={() => {
-              (user !== "" && password !== "") ? handleClickLogin() : alert("Favor preencha todos os campos!")
-            }}>Logar</button>
-          </>}
-          { registration &&
-          <button className={style.buttonRegister} onClick={() => {
-            (user !== "" && password !== "" && name !== "") ? handleClickRegistration() : alert("Favor preencha todos os campos!")}}>Cadastrar</button>}
-        </form>
-      </div>
+      <UserInputsScreen 
+        pageTitle={pageTitle}
+        isRegistration={registration}
+        changeRegistrationMode={changeRegistrationMode}
+        handleClickLogin={handleClickLogin}
+        handleClickRegistration={handleClickRegistration}
+        btnLabel={"Cadastrar"}
+      />
     </div>
   )
 }

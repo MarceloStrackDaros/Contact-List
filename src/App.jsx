@@ -1,16 +1,19 @@
 import style from './style.module.css';
 import { useState } from 'react';
+import { useUser } from './components/contexts/user';
+import { useNavigate } from 'react-router-dom'
 import usePictureInput from './components/hooks/usePictureInput';
 import useFetch from './components/hooks/useFetch';
-import UserInputsScreen from './components/userInputsScreen/userInputsScreen';
-import { useUser } from './components/contexts/user';
+import UserInputsScreen from './components/userInputsScreen/UserInputsScreen';
+import DeleteUserScreen from './components/deleteUserScreen/DeleteUserScreen';
 
 function App() {
   
+  const navigate = useNavigate()
   const userContext = useUser()
   const compressPicture = usePictureInput()
   const { loading, request } = useFetch()
-  const {name, setName, user, setUser, password, setPassword, picture, setPicture, userID, setUserID, token, setToken, editUserData, setEditUserData } = userContext
+  const { name, setName, user, setUser, picture, setPicture, userID, setUserID, token, setToken } = userContext
   const [ nome, setContactName ] = useState()
   const [ apelido, setContactSurname ] = useState()
   const [ telefones, setContactTelephone ] = useState()
@@ -18,7 +21,46 @@ function App() {
   const [ endereco, setContactAddress ] = useState()
   const [ notas, setContactNotes ] = useState()
   const [ foto, setContactPicture ] = useState()
+  const [ editUserData, setEditUserData ] = useState(false)
+  const [ deleteUser, setDeleteUser ] = useState(false)
   const [ contacts, setContacts ] = useState([])
+
+  const handleClickEditUserData = async (user, password, name, picture) => {
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify({ email: user, senha: password, nome: name, foto: picture })
+    }
+    const response = await request("user", options, token)
+
+    if (response.json.status === 404) {
+      alert("Usuário não encontrado!")
+    }
+    else {
+      const { id, email, nome, foto } = response.json.data
+      setUserID(id)
+      setName(nome)
+      setUser(email)
+      setPicture(foto)
+      setEditUserData(false)
+    }
+  }
+
+  const handleClickDeleteUser = async () => {
+    console.log(userID)
+    console.log(token)
+    const options = {
+      method: "DELETE",
+      body: JSON.stringify({ idUsuario: userID })
+    }
+    const response = await request("user", options, token)
+
+    if (response.json.status === 400) {
+      alert("Autenticação inválida!")
+    }
+    else {
+      navigate("/")
+    }
+  }
 
   const handleClickFetchContacts = async () => {
     const options = {
@@ -42,8 +84,12 @@ function App() {
     setContactPicture(await compressPicture(event))
   }
 
-  const handleClickEditUserData = () => {
-    setEditUserData(true)
+  const handleClickChangeEditState = () => {
+    editUserData ? setEditUserData(false) : setEditUserData(true)
+  }
+
+  const handleClickChangeDeleteState = () => {
+    deleteUser ? setDeleteUser(false) : setDeleteUser(true)
   }
 
   return (
@@ -58,14 +104,26 @@ function App() {
               <p>Nome: {name}</p>
               <p>Usuário: {user}</p>
               <div className={style.btnWrapper}>
-                <button onClick={() => {handleClickEditUserData()}}>Editar Informações</button>
-                <button >Excluir Usuário</button>
+                <button onClick={handleClickChangeEditState}>Editar Informações</button>
+                <button onClick={handleClickChangeDeleteState}>Excluir Usuário</button>
               </div>
             </div>
           </div>
         </section>
-        {editUserData &&
-          <UserInputsScreen />
+        { editUserData &&
+          <UserInputsScreen
+            pageTitle={"Edite suas Informações:"}
+            isRegistration={true}
+            changeRegistrationMode={handleClickChangeEditState}
+            handleClickRegistration={handleClickEditUserData}
+            btnLabel={"Editar"}
+          />
+        }
+        { deleteUser &&
+          <DeleteUserScreen
+            handleClickChangeDeleteState={handleClickChangeDeleteState}
+            handleClickDeleteUser={handleClickDeleteUser}
+          />
         }
         <form className={style.addContactForm} onSubmit={(event) => {event.preventDefault()}}>
           <h2 className={style.sectionTitle}>Inserir novo contato:</h2>

@@ -93,6 +93,12 @@
         border-radius: 10px;
       }
 
+      .buttonLogin {
+        position: absolute;
+        left: 140px;
+        bottom: 40px;
+      }
+
       .buttonClickRegistration:hover, .buttonLogin:hover, .buttonRegister:hover {
         cursor: pointer;
       }
