@@ -17,6 +17,7 @@ function App() {
   const [ nome, setContactName ] = useState()
   const [ apelido, setContactSurname ] = useState()
   const [ telefones, setContactTelephone ] = useState()
+  const [ telType, setTelType ] = useState()
   const [ email, setContactEmail ] = useState()
   const [ endereco, setContactAddress ] = useState()
   const [ notas, setContactNotes ] = useState()
@@ -136,8 +137,14 @@ function App() {
             <input type="text" name="surname" onChange={(event) => {setContactSurname(event.target.value)}} />
           </fieldset>
           <fieldset>
-            <label htmlFor="telephone">Telefones: </label>
-            <input type="tel" name="telephone" onChange={(event) => {setContactTelephone(event.target.value)}}/>
+            <label htmlFor="telephone">Telefone: </label>
+            <select name='telType' onChange={(event) => {setTelType(event.target.value)}}>
+              <option value="None"></option>
+              <option value="Casa">Casa</option>
+              <option value="Celular">Celular</option>
+              <option value="Trabalho">Trabalho</option>
+            </select>
+            <input type="text" name="telephone" onChange={(event) => {setContactTelephone(event.target.value)}} />
           </fieldset>
           <fieldset>
             <label htmlFor="email">Email: </label>
