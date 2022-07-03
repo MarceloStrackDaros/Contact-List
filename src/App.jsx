@@ -99,7 +99,10 @@ function App() {
     }
 
     const response = await request("contact", options, token)
-    console.log(response.json.data)
+    let newContacts = []
+    response.json.data.forEach((contact) => newContacts.push(contact))
+    setContacts(newContacts)
+    console.log(contacts)
   }
 
   const handleClickPicture = async (event) => {
@@ -202,8 +205,9 @@ function App() {
 
         <section className={style.fetchContacts}>
           <button onClick={handleClickFetchContacts}>Buscar Contatos</button>
+
         </section>
-        
+
       </main>
     </div>
   );
