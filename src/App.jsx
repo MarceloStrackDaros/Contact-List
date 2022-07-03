@@ -14,14 +14,19 @@ function App() {
   const compressPicture = usePictureInput()
   const { loading, request } = useFetch()
   const { name, setName, user, setUser, picture, setPicture, userID, setUserID, token, setToken } = userContext
-  const [ nome, setContactName ] = useState()
-  const [ apelido, setContactSurname ] = useState()
-  const [ telefones, setContactTelephone ] = useState()
+  const [ contactName, setContactName ] = useState()
+  const [ contactSurname, setContactSurname ] = useState()
+  const [ contactTelephone, setContactTelephone ] = useState()
   const [ telType, setTelType ] = useState()
   const [ email, setContactEmail ] = useState()
-  const [ endereco, setContactAddress ] = useState()
-  const [ notas, setContactNotes ] = useState()
-  const [ foto, setContactPicture ] = useState()
+  const [ street, setStreet ] = useState()
+  const [ city, setCity ] = useState()
+  const [ state, setState ] = useState()
+  const [ zipCode, setZipCode ] = useState()
+  const [ country, setCountry ] = useState()
+  // const [ address, setContactAddress ] = useState()
+  const [ notes, setContactNotes ] = useState()
+  const [ contactPicture, setContactPicture ] = useState()
   const [ editUserData, setEditUserData ] = useState(false)
   const [ deleteUser, setDeleteUser ] = useState(false)
   const [ contacts, setContacts ] = useState([])
@@ -47,8 +52,6 @@ function App() {
   }
 
   const handleClickDeleteUser = async () => {
-    console.log(userID)
-    console.log(token)
     const options = {
       method: "DELETE",
       body: JSON.stringify({ idUsuario: userID })
@@ -63,22 +66,40 @@ function App() {
     }
   }
 
+  const handleClickAddContact = async () => {
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify({ 
+        nome: contactName,
+        apelido: contactSurname,
+        telefones: [{
+          tipo: telType,
+          numero: contactTelephone
+        }],
+        email: email,
+        endereco: {
+          logradouro: street,
+          cidade: city,
+          estado: state,
+          cep: zipCode,
+          pais: country
+        },
+        notas: notes,
+        foto: contactPicture
+      })
+    }
+    
+    const response = await request("contact", options, token)
+  }
+
   const handleClickFetchContacts = async () => {
     const options = {
       method: "GET",
-      body: JSON.stringify({ token })
-    }
-
-    const response = await request("contact", options)
-  }
-
-  const handleClickAddContact = async () => {
-    const options = {
-      method: "POST",
-      body: JSON.stringify({ nome, apelido, telefones, email, endereco, notas, foto })
     }
 
     const response = await request("contact", options, token)
+    console.log(response.json.data)
   }
 
   const handleClickPicture = async (event) => {
@@ -140,9 +161,9 @@ function App() {
             <label htmlFor="telephone">Telefone: </label>
             <select name='telType' onChange={(event) => {setTelType(event.target.value)}}>
               <option value="None"></option>
-              <option value="Casa">Casa</option>
-              <option value="Celular">Celular</option>
-              <option value="Trabalho">Trabalho</option>
+              <option value="casa">Casa</option>
+              <option value="celular">Celular</option>
+              <option value="trabalho">Trabalho</option>
             </select>
             <input type="text" name="telephone" onChange={(event) => {setContactTelephone(event.target.value)}} />
           </fieldset>
@@ -150,9 +171,23 @@ function App() {
             <label htmlFor="email">Email: </label>
             <input type="email" name="email" onChange={(event) => {setContactEmail(event.target.value)}}/>
           </fieldset>
-          <fieldset>
-            <label htmlFor="address">Endereço: </label>
-            <input type="text" name="address" onChange={(event) => {setContactAddress(event.target.value)}}/>
+          <fieldset className={style.address}>
+            <label>Endereço: </label>
+            <br />
+            <label htmlFor="street">Logradouro: </label>
+            <input type="text" name="street" onChange={(event) => {setStreet(event.target.value)}}/>
+            <br />
+            <label htmlFor="city">Cidade: </label>
+            <input type="text" name="city" onChange={(event) => {setCity(event.target.value)}}/>
+            <br />
+            <label htmlFor="state">Estado: </label>
+            <input type="text" name="state" onChange={(event) => {setState(event.target.value)}}/>
+            <br />
+            <label htmlFor="zipCode">CEP: </label>
+            <input type="text" name="zipCode" onChange={(event) => {setZipCode(event.target.value)}}/>
+            <br />
+            <label htmlFor="country">País</label>
+            <input type="text" name="country" onChange={(event) => {setCountry(event.target.value)}}/>
           </fieldset>
           <fieldset>
             <label htmlFor="notes">Notas: </label>
@@ -164,10 +199,12 @@ function App() {
           </fieldset>
           <button onClick={handleClickAddContact}>Adicionar</button>
         </form>
-      </main>
 
-      <form className={style.form}>
-      </form>
+        <section className={style.fetchContacts}>
+          <button onClick={handleClickFetchContacts}>Buscar Contatos</button>
+        </section>
+        
+      </main>
     </div>
   );
 }

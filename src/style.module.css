@@ -9,7 +9,7 @@
   max-width: 1200px;
 }
 
-  .siteHeader, .personalData, .addContactForm {
+  .siteHeader, .personalData, .addContactForm, .fetchContacts {
     background-color: #8994be;
     border-radius: 25px;
     margin-top: 30px;
@@ -44,3 +44,10 @@
       justify-content: space-evenly;
       margin-top: 60px;
     }
+    
+  .address {
+    max-width: 600px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 25px;
+  }
