@@ -6,6 +6,7 @@ import usePictureInput from './components/hooks/usePictureInput';
 import useFetch from './components/hooks/useFetch';
 import UserInputsScreen from './components/userInputsScreen/UserInputsScreen';
 import DeleteUserScreen from './components/deleteUserScreen/DeleteUserScreen';
+import RenderContactData from './components/renderContactData';
 
 function App() {
   
@@ -205,7 +206,16 @@ function App() {
 
         <section className={style.fetchContacts}>
           <button onClick={handleClickFetchContacts}>Buscar Contatos</button>
-
+          {contacts &&
+            contacts.map((contato) => {
+              return (
+                console.log(contato),
+                <RenderContactData
+                  contactData={contato}
+                />
+              )
+            })
+          }
         </section>
 
       </main>
