@@ -1,12 +1,14 @@
 import style from './style.module.css';
+// import Parser from 'html-react-parser'
 import { useState } from 'react';
 import { useUser } from './components/contexts/user';
 import { useNavigate } from 'react-router-dom'
 import usePictureInput from './components/hooks/usePictureInput';
 import useFetch from './components/hooks/useFetch';
-import UserInputsScreen from './components/userInputsScreen/UserInputsScreen';
-import DeleteUserScreen from './components/deleteUserScreen/DeleteUserScreen';
+import UserInputsScreen from './components/userInputsScreen';
+import DeleteUserScreen from './components/deleteUserScreen';
 import RenderContactData from './components/renderContactData';
+import TelephoneData from './components/telephoneData';
 
 function App() {
   
@@ -118,6 +120,25 @@ function App() {
     deleteUser ? setDeleteUser(false) : setDeleteUser(true)
   }
 
+  const addTelephoneData = () => {
+    // const telephoneDataSection = document.querySelector("#telephoneData")
+    // const data = document.createElement(
+    //   <TelephoneData 
+    //     setTelType={setTelType}
+    //     setContactTelephone={setContactTelephone}
+    //     addTelephoneData={addTelephoneData}
+    //   />
+    // )
+    // telephoneDataSection.append(data)
+    return (
+      <TelephoneData 
+        setTelType={setTelType}
+        setContactTelephone={setContactTelephone}
+        addTelephoneData={addTelephoneData}
+      />
+    )
+  }
+
   return (
     <div className={style.siteContainer}>
       <header className={style.siteHeader}>Bem Vindo(a) { name }!</header>
@@ -161,15 +182,8 @@ function App() {
             <label htmlFor="surname">Apelido: </label>
             <input type="text" name="surname" onChange={(event) => {setContactSurname(event.target.value)}} />
           </fieldset>
-          <fieldset>
-            <label htmlFor="telephone">Telefone: </label>
-            <select name='telType' onChange={(event) => {setTelType(event.target.value)}}>
-              <option value="None"></option>
-              <option value="casa">Casa</option>
-              <option value="celular">Celular</option>
-              <option value="trabalho">Trabalho</option>
-            </select>
-            <input type="text" name="telephone" onChange={(event) => {setContactTelephone(event.target.value)}} />
+          <fieldset id="telephoneData">
+            {addTelephoneData()}
           </fieldset>
           <fieldset>
             <label htmlFor="email">Email: </label>

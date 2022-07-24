@@ -2,7 +2,7 @@ import '../../reset.css'
 import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
-import UserInputsScreen from '../userInputsScreen/UserInputsScreen'
+import UserInputsScreen from '../userInputsScreen'
 import { useUser } from '../contexts/user'
 import { useState } from 'react'
 
